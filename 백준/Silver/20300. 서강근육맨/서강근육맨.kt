@@ -14,13 +14,13 @@ fun main() {
         bw.write("$max")
     else{
         if(n%2 == 0){
-            for(i in 0 until n){
+            for(i in 0 until n/2){
                 sum = arr[i] + arr[n-1-i]
                 if(max < sum)
                     max = sum
             }
         }else{
-            for(i in 0 until n-1){
+            for(i in 0 until (n-1)/2){
                 sum = arr[i] + arr[n-2-i]
                 if(max < sum)
                     max = sum
