@@ -23,33 +23,30 @@ fun main() {
                 }
             }
             2 -> {
-                var left = num - 1
-                var right = num - 1
-
-                switch[left] = if(switch[left] == 0)
+                var count = 1
+                switch[num - 1] = if(switch[num - 1] == 0)
                     1
                 else
                     0
 
                 while(true){
-                    if(left - 1 >= 0 && right + 1 < n){
-                        left -= 1
-                        right += 1
-                    }else
+                    if(num - count - 1 < 0 || num + count - 1 >= n)
                         break
 
-                    if(switch[left] == switch[right]){
-                        switch[left] = if(switch[left] == 0)
+                    if(switch[num - 1 - count] == switch[num - 1 + count]){
+                        switch[num - 1 - count] = if(switch[num - 1 - count] == 0)
                             1
                         else
                             0
 
-                        switch[right] = if(switch[right] == 0)
+                        switch[num - 1 + count] = if(switch[num - 1 + count] == 0)
                             1
                         else
                             0
                     }else
                         break
+
+                    count++
                 }
             }
         }
