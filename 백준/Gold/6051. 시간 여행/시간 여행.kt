@@ -6,27 +6,29 @@ val bw = System.out.bufferedWriter()
 
 fun main() {
     val n = br.readLine().toInt()
-    val sequence = Array<ArrayList<Int>>(n+1){ArrayList()}
+    val sequence = Array(n + 1){Pair(0, 0)}
+    sequence[0] = Pair(-1, 0)
+    var beforeIndex = 0
 
     for(i in 1 .. n){
         val input = br.readLine().split(" ")
 
         when(input[0]){
             "a" -> {
-                sequence[i].addAll(sequence[i-1])
-                sequence[i].add(input[1].toInt())
+                sequence[i] = Pair(input[1].toInt(), beforeIndex)
+                beforeIndex = i
             }
             "s" -> {
-                sequence[i].addAll(sequence[i-1])
-                sequence[i].removeLast()
+                sequence[i] = Pair(sequence[beforeIndex].first, beforeIndex)
+                beforeIndex = sequence[beforeIndex].second
             }
-            "t" -> { sequence[i].addAll(sequence[input[1].toInt() - 1]) }
+            "t" -> {
+                sequence[i] = Pair(sequence[beforeIndex].first, beforeIndex)
+                beforeIndex = sequence[input[1].toInt()].second
+            }
         }
 
-        if(sequence[i].isNotEmpty())
-            bw.write("${sequence[i].last()}\n")
-        else
-            bw.write("-1\n")
+        bw.write("${sequence[beforeIndex].first}\n")
     }
 
     bw.close()

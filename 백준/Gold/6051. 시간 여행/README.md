@@ -1,14 +1,14 @@
-# [Gold III] 시간 여행 - 6051 
+# [Gold II] 시간 여행 - 6051 
 
 [문제 링크](https://www.acmicpc.net/problem/6051) 
 
 ### 성능 요약
 
-메모리: 60076 KB, 시간: 500 ms
+메모리: 56516 KB, 시간: 436 ms
 
 ### 분류
 
-자료 구조(data_structures), 구현(implementation), 스택(stack)
+자료 구조, 스택
 
 ### 문제 설명
 
