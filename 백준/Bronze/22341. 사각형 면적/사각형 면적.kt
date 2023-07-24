@@ -9,15 +9,16 @@ fun main() {
     var nowX = n
     var nowY = n
 
-    repeat(c){
+    for(i in 0 until c){
         val (x, y) = br.readLine().split(" ").map { it.toInt() }
 
-        if(nowY > x && nowX > y){
-            if(x * nowY >= nowX * y)
-                nowX = x
-            else
-                nowY = y
-        }
+        if(nowY < x || nowX < y)
+            continue
+
+        if(x * nowY >= nowX * y)
+            nowX = x
+        else
+            nowY = y
     }
 
     bw.write("${nowX * nowY}")
