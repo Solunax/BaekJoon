@@ -35,13 +35,6 @@ fun main() {
             }
         }
 
-        if(now + up <= floor){
-            if(arr[now + up] == 0){
-                arr[now + up] = arr[now] + 1
-                queue.add(now + up)
-            }
-        }
-
         if(now - down > 0){
             if(arr[now - down] == 0){
                 arr[now - down] = arr[now] + 1
