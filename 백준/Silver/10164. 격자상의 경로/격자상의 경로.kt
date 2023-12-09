@@ -19,8 +19,12 @@ fun main() {
         bw.write("${map[n][m]}")
     } else {
         var result = 1
-        val mx = k / m + 1
-        val my = k % m
+        val mx = k / m + if (k % m > 0) {
+            1
+        } else{
+            0
+        }
+        val my = k - (mx - 1) * m
 
         map[0][1] = 1
         for (i in 1 .. mx) {
@@ -32,6 +36,7 @@ fun main() {
         result *= map[mx][my]
         map[mx - 1][my] = 1
         map[mx][my - 1] = 0
+
         for (i in mx .. n){
             for (j in my .. m) {
                 map[i][j] = map[i - 1][j] + map[i][j - 1]
