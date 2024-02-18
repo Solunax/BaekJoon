@@ -12,12 +12,12 @@ fun main() {
         queue.offer(it)
     }
 
-    repeat(br.readLine().toInt()) {
-        queue.offer(queue.poll())
+    repeat(br.readLine().toInt() % 10) {
+        queue.offer(queue.pop())
     }
 
     while (queue.isNotEmpty()){
-        bw.write("${queue.poll()}")
+        bw.write("${queue.pop()}")
     }
 
     bw.close()
