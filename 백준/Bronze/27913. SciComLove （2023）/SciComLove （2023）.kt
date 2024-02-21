@@ -6,31 +6,32 @@ val bw = System.out.bufferedWriter()
 
 fun main() {
     val (n, q) = br.readLine().split(" ").map { it.toInt() }
-    val origin = arrayOf(1, 0, 0, 1, 0, 0, 1, 0, 0, 0)
-    val arr = ArrayList<Int>()
-    var index = 0
-    arr.add(0)
+    val origin = arrayOf(true, false, false, true, false, false, true, false, false, false)
+    val arr = ArrayList<Boolean>()
 
-    while (arr.size <= n) {
-        arr.add(origin[index++])
-
-        if (index > 9) {
-            index = 0
-        }
+    for (i in 0 until n / 10) {
+        arr += origin
     }
+
+    for (i in 0 until n % 10) {
+        arr.add(origin[i])
+    }
+
+    var count = arr.count { it }
 
     repeat(q) {
-        val change = br.readLine().toInt()
+        val change = br.readLine().toInt() - 1
 
-        if (arr[change] == 1) {
-            arr[change] = 0
+        if (arr[change]) {
+            count--
         } else {
-            arr[change] = 1
+            count++
         }
 
-        bw.write("${arr.count { it == 1 }}\n")
-    }
+        arr[change] = !arr[change]
 
+        bw.write("$count\n")
+    }
 
     bw.close()
     br.close()
