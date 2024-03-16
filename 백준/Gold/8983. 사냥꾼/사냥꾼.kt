@@ -5,16 +5,18 @@ import kotlin.math.abs
 val br = BufferedReader(InputStreamReader(System.`in`))
 val bw = System.out.bufferedWriter()
 lateinit var point: List<Int>
+var n = 0
 var m = 0
 var l = 0
 
 fun main() {
-    val (im, n, il) = br.readLine().split(" ").map { it.toInt() }
+    val input = br.readLine().split(" ").map { it.toInt() }
+    l = input[2]
+    n = input[1]
+    m = input[0]
     val animal = Array(n) { Pair(0, 0) }
     var result = 0
     point = br.readLine().split(" ").map { it.toInt() }.sorted()
-    l = il
-    m = im
 
     repeat(n) {
         val (x, y) = br.readLine().split(" ").map { v -> v.toInt() }
@@ -24,6 +26,7 @@ fun main() {
     for (location in animal) {
         result += searchPoint(location)
     }
+
     bw.write("$result")
 
     bw.close()
@@ -38,6 +41,10 @@ fun searchPoint(location: Pair<Int, Int>): Int {
     while (start <= end) {
         center = (start + end) / 2
 
+        if (center >= m) {
+            return 0
+        }
+        
         val distance = abs(location.first - point[center]) + location.second
 
         if (l >= distance) {
